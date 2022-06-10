@@ -1,9 +1,11 @@
 from flask import Flask, render_template, url_for,  render_template_string, Markup, request
-from flask_flatpages import FlatPages
-from flask_frozen import Freezer
+
+from flask_flatpages       import FlatPages
+from flask_frozen          import Freezer
 from flask_flatpages.utils import pygmented_markdown
-import markdown2
+
 import dash
+from dash import Dash
 from main.dash.dashboard import init_dashboard
 
 from bs4 import BeautifulSoup
@@ -40,7 +42,7 @@ def register_dashapps(app):
     meta_viewport = {"name": "viewport",
                      "content": "width=device-width, initial-scale=1, shrink-to-fit=no"}
 
-    dash_app = dash.Dash(
+    dash_app = Dash(
         server=app,
         routes_pathname_prefix="/projects/dashapp/",
         external_stylesheets=[
